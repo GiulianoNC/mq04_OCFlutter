@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mq04f/herramientas/variables_globales.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 
 final direccion = TextEditingController();
 

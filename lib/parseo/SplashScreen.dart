@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -17,11 +17,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void splashDelay() async {
     bool skipLogin = false;
-    final prefs = await SharedPreferences.getInstance();
-    final bool? saveUser = prefs.getBool('saveUser');
-    if (saveUser != null) {
+    //final prefs = await SharedPreferences.getInstance();
+   // final bool? saveUser = prefs.getBool('saveUser');
+  /*  if (saveUser != null) {
       skipLogin = saveUser;
-    }
+    }*/
     await Future.delayed(
       const Duration(seconds: 3),
     );
