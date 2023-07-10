@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:mq04f/parseo/global.dart' as global;
 
 import 'package:flutter/material.dart';
 
@@ -160,11 +161,24 @@ class _AprobacionState extends State<Aprobacion> {
     // para recibir datos de la pantalla anterior opcion 2
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Lista de ordenes",
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.purple,
-          title: Text("Lineas"),
+          title: Text("QTM - APROBACIÓN  "+ "\n" + "ÓRDEN DE COMPRA" ,
+              style: TextStyle(
+                  fontSize: 14,
+                  fontFamily: "bold"
+              )  ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color.fromRGBO(102, 45, 145, 50), Color.fromRGBO(212, 20, 90, 50)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+          ),
         ),
         body: FutureBuilder(
             future: _Listado,
@@ -208,18 +222,37 @@ class _AprobacionState extends State<Aprobacion> {
                   "Costo Total: " +   linea.costoTotalFor.toString() +  '\n',
                   style: TextStyle(
                       fontSize: 14,
-                      fontFamily: "bold")
+                      fontFamily: "bold"),
+                  textAlign: TextAlign.center
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.purple
+                  backgroundColor: Color.fromRGBO(102, 45, 145, 100),
+                  padding: const EdgeInsets.all(0.0),
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50)
+                  ),
                 ),
                 onPressed: () {
                   _getAprobado();
                 },
-                child: Text ("APROBAR",
+                child: Ink(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [Color.fromRGBO(102, 45, 145, 50), Color.fromRGBO(212, 20, 90, 50)],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(50)
+                    ),
+                    padding: const EdgeInsets.all(10),
+                    constraints: const BoxConstraints(minWidth: 88.0),
+                    child: const Text('APROBAR', textAlign: TextAlign.center),
+                  ),
                 ),
-              ),
+              )
             ],
           )));
 
@@ -228,4 +261,5 @@ class _AprobacionState extends State<Aprobacion> {
 
 
 }
+
 

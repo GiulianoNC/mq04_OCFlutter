@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:mq04f/parseo/global.dart' as global;
 
 import '../herramientas/variables_globales.dart';
 import '../parseo/body.dart';
@@ -75,10 +76,31 @@ class _PrimeraState extends State<Primera> {
     // para recibir datos de la pantalla anterior opcion 2
     Map? parametros = ModalRoute.of(context)?.settings.arguments as Map?;
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
           appBar: AppBar(
-            title: Text("órdenes"),
-            backgroundColor :Colors.deepPurple,
+            title: Text("QTM - APROBACIÓN  "+ "\n" + "ÓRDEN DE COMPRA" ,
+                style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: "bold"
+                ),
+                textAlign: TextAlign.center),
+            actions: [
+              IconButton(
+                icon: Image.asset('images/icon.png', height: 220,),
+                onPressed: () {
+                  Navigator.pushNamed(context, "/login");                },
+              ),
+            ],
+            flexibleSpace: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Color.fromRGBO(102, 45, 145, 50), Color.fromRGBO(212, 20, 90, 50)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+            ),
           ),
           body: FutureBuilder(
               future: _Listado,
@@ -105,17 +127,34 @@ class _PrimeraState extends State<Primera> {
           Card(child : Column(
             children: [
               ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.purple
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, "/perfil");
-                  ordenGlobal =orden.ordenNro;
-                  tipoGlobal =orden.ordenTipo;
-                  ciaGlobal =orden.ordenCia;
-                },
-                child: Text (  orden.ordenNro,
-                ),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(0.0),
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50)
+                    ),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/perfil");
+                    ordenGlobal =orden.ordenNro;
+                    tipoGlobal =orden.ordenTipo;
+                    ciaGlobal =orden.ordenCia;
+                  },
+                  child:Ink(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [Color.fromRGBO(102, 45, 145, 50), Color.fromRGBO(212, 20, 90, 50)],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(50)
+                        ),
+                        padding: const EdgeInsets.all(10),
+                        constraints: const BoxConstraints(minWidth: 88.0),
+                        child: Text (  orden.ordenNro, textAlign: TextAlign.center),
+                      )
+                  )
               ),
               Text ( orden.ordenTipo + "  "+  orden.ordenCia  + " "+  '\n' +
                   orden.iniciadorNombre + " "+  orden.proveedorCod +  '\n' +
@@ -124,7 +163,7 @@ class _PrimeraState extends State<Primera> {
                   style: TextStyle(
                       fontSize: 14,
                       fontFamily: "bold"
-                  )),
+                  ),textAlign: TextAlign.center),
 
             ],
           )));
